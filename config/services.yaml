@@ -1,0 +1,19 @@
+services:
+    _defaults:
+            autowire: true
+            autoconfigure: true
+
+    # Makes sure the controllers and services benefits from autowiring
+    MorgenBord\WallabagWidgetBundle\:
+        resource: '../src/'
+    
+    # Declare event listeners that declare widgets
+    register_demo_widget.listener:
+        class: MorgenBord\WallabagWidgetBundle\WallabagWidgetParameters
+        tags:
+            - { name: kernel.event_listener, event: morning_bord.register_widget }
+
+    register_other_widget.listener:
+        class: MorgenBord\WallabagWidgetBundle\OtherWidgetParameters
+        tags:
+            - { name: kernel.event_listener, event: morning_bord.register_widget }
